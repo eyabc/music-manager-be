@@ -1,5 +1,10 @@
 import app from './app';
-const port = 4000;
+import dotenv from 'dotenv'
+import './mysql';
+
+dotenv.config();
+const port = process.env.PORT;
+
 const handleListening = () => console.log(`http://localhost:${ port }`);
 
 app.listen(port, handleListening);

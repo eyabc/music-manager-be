@@ -8,6 +8,10 @@ import globalRouter from './server/globalRouter'
 import userRouter from './server/userRouter'
 import musicRouter from './server/musicRouter'
 
+
+import sequelize from './models/index'
+sequelize.sequelize.sync();
+
 const app = express();
 
 app.use(cookieParser());
