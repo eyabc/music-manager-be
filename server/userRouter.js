@@ -34,9 +34,8 @@ userRouter.post('/sign-up', async (req, res) => {
         const isDuplicateId = await User.findOne({
             login_id,
         });
-        console.log({isDuplicateId});
         if (isDuplicateId)
-            return res.send(200, {code: 1, message: 'duplicated Id!'});
+            return res.send(200, { code: 1, message: 'duplicated Id!' });
 
         login_password === passwordCheck &&
         await User.create({
@@ -50,8 +49,27 @@ userRouter.post('/sign-up', async (req, res) => {
     }
 });
 
-userRouter.put('/password', (req, res) => {
+userRouter.put('/password', async (req, res) => {
+    try {
+        const {
+            body: { login_id, currentPassword, newPassword },
+        } = req;
 
+        const user = await User.findOne({
+            where: {
+                login_id,
+            },
+        });
+        if (currentPassword !== user.dataValues.login_password)
+            return res.send(200, { code: 1, message: '현재 비밀번호가 틀렸습니다.' });
+
+        user.update({
+            login_password: newPassword,
+        });
+        res.send(200);
+    } catch (error) {
+        return res.send(500, { message: error.message });
+    }
 });
 
 
