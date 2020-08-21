@@ -39,9 +39,7 @@ musicRouter.post('/music', async (req, res) => {
         });
 
         const { body: { title, album, track, artist } } = req;
-
         await Music.create({ title, album, track, artist, path });
-
         res.status(200).send();
 
     } catch (error) {
