@@ -29,6 +29,6 @@ app.use(helmet());
 
 app.use('/api', globalRouter);
 app.use('/api/user', userRouter);
-app.use('/api/music', musicRouter);
+app.use('/api', musicRouter);
 
 export default app;

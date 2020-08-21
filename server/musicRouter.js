@@ -5,7 +5,7 @@ import multer from 'multer';
 
 const musicRouter = express.Router();
 
-musicRouter.get('/', async (req, res) => {
+musicRouter.get('/musics', async (req, res) => {
     try {
         const music = await Music.findAll();
         res.status(200).send({ music });
