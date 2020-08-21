@@ -16,7 +16,18 @@ musicRouter.get('/musics', async (req, res) => {
 
 });
 
-musicRouter.post('/', async (req, res) => {
+musicRouter.get('/music', async (req, res) => {
+    try {
+        const { id } = req.query;
+        const music = await Music.findOne({ id });
+        res.status(200).send({ music });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message });
+    }
+});
+
+musicRouter.post('/music', async (req, res) => {
     try {
         const path = await new Promise((resolve, reject) => {
             upload(req, res, err => {
