@@ -9,7 +9,7 @@ import userRouter from './server/userRouter'
 import musicRouter from './server/musicRouter'
 
 
-import sequelize from './models/index'
+import sequelize from './models'
 sequelize.sequelize.sync();
 
 const app = express();

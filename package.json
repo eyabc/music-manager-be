@@ -2,10 +2,12 @@
   "main": "init.js'",
   "author": "eyabc",
   "scripts": {
-    "start": "nodemon --exec babel-node init.js",
-    "forever:start": "forever start init.js"
+    "start": "nodemon --exec babel-node src/init.js",
+    "build": "babel src -d dist",
+    "forever:start": "forever start dist/init.js"
   },
   "dependencies": {
+    "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
