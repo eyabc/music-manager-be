@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 app.use(helmet());
 
 app.use('/api', globalRouter);
-app.use('/api/user', userRouter);
+app.use('/api', userRouter);
 app.use('/api', musicRouter);
 
 export default app;

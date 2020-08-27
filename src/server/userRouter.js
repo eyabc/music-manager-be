@@ -3,7 +3,7 @@ import { User } from '../models';
 
 const userRouter = express.Router();
 
-userRouter.post('/sign-in', async (req, res) => {
+userRouter.post('/user/sign-in', async (req, res) => {
     try {
         const {
             body: { login_id, login_password },
@@ -25,14 +25,16 @@ userRouter.post('/sign-in', async (req, res) => {
 });
 
 
-userRouter.post('/sign-up', async (req, res) => {
+userRouter.post('/user/sign-up', async (req, res) => {
     try {
         const {
             body: { name, login_id, login_password, passwordCheck },
         } = req;
 
         const isDuplicateId = await User.findOne({
-            login_id,
+            where: {
+                login_id
+            },
         });
         if (isDuplicateId)
             return res.send(200, { code: 1, message: 'duplicated Id!' });
@@ -49,7 +51,7 @@ userRouter.post('/sign-up', async (req, res) => {
     }
 });
 
-userRouter.put('/password', async (req, res) => {
+userRouter.put('/user/password', async (req, res) => {
     try {
         const {
             body: { login_id, currentPassword, newPassword },
