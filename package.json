@@ -1,6 +1,7 @@
 {
   "main": "init.js'",
   "author": "eyabc",
+  "type": "module",
   "scripts": {
     "start": "nodemon --exec babel-node src/init.js",
     "build": "babel src -d dist",
